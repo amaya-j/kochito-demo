@@ -1,0 +1,47 @@
+/* Shared Navigation Styles */
+.nav-bar {
+  background: white;
+  padding: 15px 0;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  border-radius: 8px;
+}
+
+.nav-bar .nav-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nav-bar .logo {
+  font-size: 20px;
+  font-weight: 600;
+  color: #667eea;
+  text-decoration: none;
+}
+
+.nav-bar .nav-links {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+
+.nav-bar .nav-links a {
+  color: #666;
+  text-decoration: none;
+  font-size: 14px;
+  transition: color 0.2s;
+}
+
+.nav-bar .nav-links a:hover {
+  color: #667eea;
+}
+
+.nav-bar .nav-links a.active {
+  color: #667eea;
+  font-weight: 600;
+}
+

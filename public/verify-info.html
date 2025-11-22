@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Twilio Verification Required</title>
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      max-width: 600px;
+      margin: 50px auto;
+      padding: 20px;
+      line-height: 1.6;
+    }
+    .warning {
+      background: #fff3cd;
+      border: 2px solid #ffc107;
+      border-radius: 8px;
+      padding: 20px;
+      margin: 20px 0;
+    }
+    .info {
+      background: #e7f3ff;
+      border: 2px solid #2196F3;
+      border-radius: 8px;
+      padding: 20px;
+      margin: 20px 0;
+    }
+    h1 { color: #333; }
+    h2 { color: #666; margin-top: 30px; }
+    ol { margin-left: 20px; }
+    code {
+      background: #f4f4f4;
+      padding: 2px 6px;
+      border-radius: 3px;
+      font-family: monospace;
+    }
+    a {
+      color: #2196F3;
+      text-decoration: none;
+    }
+    a:hover { text-decoration: underline; }
+  </style>
+</head>
+<body>
+  <h1>📱 Twilio Phone Number Verification</h1>
+  
+  <div class="warning">
+    <h2>⚠️ Not Receiving SMS?</h2>
+    <p>If you're using a <strong>Trial Twilio account</strong>, you can only send SMS to <strong>verified phone numbers</strong>.</p>
+  </div>
+
+  <div class="info">
+    <h2>How to Verify Your Phone Number:</h2>
+    <ol>
+      <li>Go to <a href="https://console.twilio.com/us1/develop/phone-numbers/manage/verified" target="_blank">Twilio Console → Phone Numbers → Verified Caller IDs</a></li>
+      <li>Click <strong>"Add a new Caller ID"</strong></li>
+      <li>Enter your phone number (e.g., +17402581804)</li>
+      <li>Twilio will send you a verification code via SMS or call</li>
+      <li>Enter the code to verify your number</li>
+      <li>Once verified, try signing up again!</li>
+    </ol>
+  </div>
+
+  <h2>Alternative: Upgrade Your Twilio Account</h2>
+  <p>If you upgrade to a paid Twilio account, you can send SMS to any number without verification.</p>
+  <p><a href="https://www.twilio.com/pricing" target="_blank">View Twilio Pricing →</a></p>
+
+  <h2>Test Your Setup</h2>
+  <p>After verifying your number, you can test by:</p>
+  <ol>
+    <li>Going back to the <a href="/">signup page</a></li>
+    <li>Entering your verified phone number</li>
+    <li>You should receive the welcome SMS!</li>
+  </ol>
+</body>
+</html>
+

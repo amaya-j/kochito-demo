@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kochi.to Newsletter - Sign Up</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+      background: #fffef0;
+      min-height: 100vh;
+      padding: 20px;
+    }
+    .page-wrapper {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+    .nav-bar {
+        background: white;
+        padding: 15px 20px;
+        margin-bottom: 20px;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        max-width: 1200px;
+        margin-left: auto;
+        margin-right: auto;
+        margin-bottom: 20px;
+      }
+      .nav-bar-content {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      .nav-bar .logo {
+        font-size: 20px;
+        font-weight: 600;
+        color: #d4a017;
+        text-decoration: none;
+      }
+      .nav-bar .nav-links {
+        display: flex;
+        gap: 20px;
+      }
+      .nav-bar .nav-links a {
+        color: #666;
+        text-decoration: none;
+        font-size: 14px;
+        padding: 5px 10px;
+        border-radius: 4px;
+      }
+      .nav-bar .nav-links a:hover {
+        color: #d4a017;
+        background: #f8f9fa;
+      }
+      .nav-bar .nav-links a.active {
+        color: #d4a017;
+        font-weight: 600;
+        background: #fff9e6;
+      }
+      .container {
+        max-width: 900px;
+        margin: 0 auto;
+      }
+    h1 {
+      color: #333;
+      margin-bottom: 10px;
+      font-size: 28px;
+    }
+    .subtitle {
+      color: #666;
+      margin-bottom: 30px;
+      font-size: 14px;
+    }
+    .form-group {
+      margin-bottom: 20px;
+    }
+    label {
+      display: block;
+      margin-bottom: 8px;
+      color: #333;
+      font-weight: 500;
+      font-size: 14px;
+    }
+    input[type="tel"] {
+      width: 100%;
+      padding: 12px 16px;
+      border: 2px solid #e0e0e0;
+      border-radius: 8px;
+      font-size: 16px;
+      transition: border-color 0.3s;
+    }
+    input[type="tel"]:focus {
+      outline: none;
+      border-color: #d4a017;
+    }
+    .help-text {
+      font-size: 12px;
+      color: #999;
+      margin-top: 6px;
+    }
+    button {
+      width: 100%;
+      padding: 14px;
+      background: #d4a017;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(212, 160, 23, 0.4);
+    }
+    button:active {
+      transform: translateY(0);
+    }
+    button:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+      transform: none;
+    }
+    .message {
+      margin-top: 20px;
+      padding: 12px;
+      border-radius: 8px;
+      font-size: 14px;
+      display: none;
+    }
+    .message.success {
+      background: #d4edda;
+      color: #155724;
+      border: 1px solid #c3e6cb;
+      display: block;
+    }
+    .message.error {
+      background: #f8d7da;
+      color: #721c24;
+      border: 1px solid #f5c6cb;
+      display: block;
+    }
+    .info-box {
+      background: #f8f9fa;
+      border-left: 4px solid #d4a017;
+      padding: 20px;
+      margin-top: 20px;
+      border-radius: 4px;
+      font-size: 13px;
+      color: #555;
+    }
+    .info-box h3 {
+      margin-bottom: 8px;
+      color: #333;
+      font-size: 14px;
+    }
+    .info-box ul {
+      margin-left: 20px;
+      margin-top: 8px;
+    }
+    .info-box li {
+      margin-bottom: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="page-wrapper">
+    <nav class="nav-bar">
+      <div class="nav-bar-content">
+        <a href="/" class="logo">Kochi.to</a>
+        <div class="nav-links">
+          <a href="/" class="active">Home</a>
+          <a href="/generate.html">Generate</a>
+          <a href="/newsletters.html">My Newsletters</a>
+        </div>
+      </div>
+    </nav>
+    <div class="container">
+    <h1>Kochi.to Newsletter</h1>
+    <p class="subtitle">Sign up to generate mini-newsletters via SMS</p>
+    
+    <form id="signupForm">
+      <div class="form-group">
+        <label for="phone">Phone Number</label>
+        <input 
+          type="tel" 
+          id="phone" 
+          name="phone" 
+          placeholder="+1234567890" 
+          required
+          pattern="^\+[1-9]\d{1,14}$"
+        >
+        <div class="help-text">Include country code (e.g., +1 for US, +44 for UK)</div>
+      </div>
+      
+      <button type="submit" id="submitBtn">Sign Up & Get Started</button>
+    </form>
+
+    <div id="message" class="message"></div>
+
+    <div style="margin-top: 30px; text-align: center; padding-top: 20px; border-top: 1px solid #eee;">
+      <p style="color: #666; margin-bottom: 15px;">Or try it now via web:</p>
+      <a href="/generate.html" style="display: inline-block; background: #d4a017; color: white; padding: 12px 24px; border-radius: 8px; text-decoration: none; font-weight: 600;">Generate Newsletter via Web →</a>
+      <div style="margin-top: 15px;">
+        <a href="/newsletters.html" style="color: #d4a017; text-decoration: none; font-size: 14px;">View All Newsletters →</a>
+      </div>
+    </div>
+  </div>
+  </div>
+
+  <script>
+    const form = document.getElementById('signupForm');
+    const messageDiv = document.getElementById('message');
+    const submitBtn = document.getElementById('submitBtn');
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      
+      const phone = document.getElementById('phone').value.trim();
+      
+      // Validate phone format
+      if (!phone.match(/^\+[1-9]\d{1,14}$/)) {
+        showMessage('Please enter a valid phone number with country code (e.g., +1234567890)', 'error');
+        return;
+      }
+
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Signing up...';
+
+      try {
+        const response = await fetch('/api/signup', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ phone }),
+        });
+
+        const data = await response.json();
+
+        if (response.ok) {
+          showMessage(data.message || 'Success! Check your phone for instructions.', 'success');
+          form.reset();
+        } else {
+          showMessage(data.error || 'Something went wrong. Please try again.', 'error');
+        }
+      } catch (error) {
+        showMessage('Network error. Please try again.', 'error');
+      } finally {
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Sign Up & Get Started';
+      }
+    });
+
+    function showMessage(text, type) {
+      messageDiv.textContent = text;
+      messageDiv.className = `message ${type}`;
+      messageDiv.style.display = 'block';
+      
+      if (type === 'success') {
+        setTimeout(() => {
+          messageDiv.style.display = 'none';
+        }, 5000);
+      }
+    }
+  </script>
+</body>
+</html>
+

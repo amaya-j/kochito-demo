@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Newsletters - Kochi.to</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: #fffef0;
+      padding: 20px;
+    }
+    .nav-bar {
+      background: white;
+      padding: 15px 20px;
+      margin-bottom: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      max-width: 1200px;
+      margin-left: auto;
+      margin-right: auto;
+      margin-bottom: 20px;
+    }
+    .nav-bar-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .nav-bar .logo {
+      font-size: 20px;
+      font-weight: 600;
+      color: #d4a017;
+      text-decoration: none;
+    }
+    .nav-bar .nav-links {
+      display: flex;
+      gap: 20px;
+    }
+    .nav-bar .nav-links a {
+      color: #666;
+      text-decoration: none;
+      font-size: 14px;
+      padding: 5px 10px;
+      border-radius: 4px;
+    }
+    .nav-bar .nav-links a:hover {
+      color: #d4a017;
+      background: #f8f9fa;
+    }
+    .nav-bar .nav-links a.active {
+      color: #d4a017;
+      font-weight: 600;
+      background: #fff9e6;
+    }
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    header {
+      background: white;
+      padding: 30px;
+      border-radius: 12px;
+      margin-bottom: 30px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    h1 {
+      color: #333;
+      margin-bottom: 10px;
+    }
+    .subtitle {
+      color: #666;
+      font-size: 14px;
+    }
+    .actions {
+      margin-top: 20px;
+    }
+    .btn {
+      display: inline-block;
+      background: #d4a017;
+      color: white;
+      padding: 12px 24px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 600;
+      margin-right: 10px;
+    }
+    .btn:hover {
+      opacity: 0.9;
+    }
+    .newsletters-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 20px;
+    }
+    .newsletter-card {
+      background: white;
+      border-radius: 8px;
+      padding: 20px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .newsletter-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+    }
+    .newsletter-card h3 {
+      color: #333;
+      margin-bottom: 10px;
+      font-size: 18px;
+    }
+    .newsletter-card .meta {
+      color: #999;
+      font-size: 12px;
+      margin-bottom: 15px;
+    }
+    .newsletter-card a {
+      display: inline-block;
+      background: #d4a017;
+      color: white;
+      padding: 8px 16px;
+      border-radius: 6px;
+      text-decoration: none;
+      font-size: 14px;
+    }
+    .newsletter-card a:hover {
+      background: #5568d3;
+    }
+    .empty {
+      text-align: center;
+      padding: 60px 20px;
+      background: white;
+      border-radius: 12px;
+      color: #999;
+    }
+    .empty h2 {
+      margin-bottom: 10px;
+      color: #666;
+    }
+    .loading {
+      text-align: center;
+      padding: 40px;
+      color: #666;
+    }
+  </style>
+</head>
+<body>
+  <nav class="nav-bar">
+    <div class="nav-bar-content">
+        <a href="/" class="logo">Kochi.to</a>
+      <div class="nav-links">
+        <a href="/">Home</a>
+        <a href="/generate.html">Generate</a>
+        <a href="/newsletters.html" class="active">My Newsletters</a>
+      </div>
+    </div>
+  </nav>
+  <div class="container">
+    <header>
+      <h1>My Newsletters</h1>
+      <p class="subtitle">All your generated newsletters</p>
+      <div class="actions">
+        <a href="/generate.html" class="btn">+ Generate New</a>
+        <a href="/" class="btn" style="background: #6c757d;">Home</a>
+      </div>
+    </header>
+
+    <div id="newsletters" class="loading">Loading newsletters...</div>
+  </div>
+
+  <script>
+    async function loadNewsletters() {
+      try {
+        const response = await fetch('/api/newsletters');
+        const data = await response.json();
+        
+        const container = document.getElementById('newsletters');
+        
+        if (!data.newsletters || data.newsletters.length === 0) {
+          container.className = 'empty';
+          container.innerHTML = `
+            <h2>No newsletters yet</h2>
+            <p>Generate your first newsletter to get started!</p>
+            <a href="/generate.html" class="btn" style="margin-top: 20px;">Generate Newsletter</a>
+          `;
+          return;
+        }
+
+        container.className = 'newsletters-grid';
+        container.innerHTML = data.newsletters.map(nl => `
+          <div class="newsletter-card">
+            <h3>${escapeHtml(nl.title || 'Untitled Newsletter')}</h3>
+            <div class="meta">Created: ${new Date(nl.created).toLocaleString()}</div>
+            <a href="${nl.url}" target="_blank">View Newsletter →</a>
+          </div>
+        `).join('');
+      } catch (error) {
+        document.getElementById('newsletters').innerHTML = `
+          <div class="empty">
+            <h2>Error loading newsletters</h2>
+            <p>${error.message}</p>
+          </div>
+        `;
+      }
+    }
+
+    function escapeHtml(text) {
+      const div = document.createElement('div');
+      div.textContent = text;
+      return div.innerHTML;
+    }
+
+    loadNewsletters();
+  </script>
+</body>
+</html>
+
